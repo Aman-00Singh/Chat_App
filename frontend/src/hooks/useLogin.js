@@ -24,21 +24,22 @@ const useLogin = () => {
         .then((response) => {
           if (response.status === 200) {
             // handle successful login
-
             console.log("Login successful", response.data);
+            toast.success("Logged in");
             localStorage.setItem("chat-user-info", JSON.stringify(data));
             //context
             setAuthUser(data);
           } else {
             throw new Error(response.statusText);
           }
-        })
-
-        .catch((error) => {
-          console.log("Error logging in", error);
         });
+
+      // .catch((error) => {
+      //   console.log("Error logging in", error);
+      // });
     } catch (error) {
-      toast.error(error.message);
+      // toast.error(error.message);
+      toast.error("Invalid username or password");
     } finally {
       setLoading(false);
     }
