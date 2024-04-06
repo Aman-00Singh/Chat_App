@@ -10,19 +10,22 @@ const useSendMessage = () => {
     setloading(true);
     try {
       const res = await axios.post(
-        `api/messages/send/${selectedConversation._id}`,
+        `http://localhost:8000/api/messages/send/${selectedConversation._id}`,
         {
           message,
-        }
+        },
+        { withCredentials: true }
       );
 
       const data = res.data;
 
       if (data.error) {
-        throw new Error(data.error);
+        console.log("some error");
       }
 
       setMessages([...messages, data]);
+      toast.success("Message sent");
+      console.log(data);
     } catch (error) {
       toast.error(error.message);
     } finally {
