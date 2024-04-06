@@ -1,4 +1,5 @@
 import Conversation from "../models/conversation_model.js";
+import User from "../models/user_model.js";
 import Message from "../models/message_model.js";
 import User from "../models/user_model.js";
 
@@ -10,6 +11,7 @@ export const sendMessage = async (req, res) => {
 
     const senderUser = await User.findById(senderId);
     const receiverUser = await User.findById(receiverId);
+<<<<<<< HEAD
 
     let conversation = await Conversation.findOne({
       participants: { $all: [senderUser, receiverUser] },
@@ -17,6 +19,20 @@ export const sendMessage = async (req, res) => {
 
     if(conversation){
       console.log("conversation already exists");
+=======
+    
+    let conversation = await Conversation.find({
+      participants: {$all : [senderUser, receiverUser]},
+    });
+ 
+    if (!conversation) {
+      conversation = await Conversation.create({
+        participants: [senderId, receiverId]
+      });
+
+      await conversation.save();
+      
+>>>>>>> b21ce7255c8d272c6af2b6f1d899a97ec9dec0c1
     }
 
     if (!conversation) {
@@ -33,6 +49,7 @@ export const sendMessage = async (req, res) => {
       receiverId: receiverUser,
       message: message,
     });
+<<<<<<< HEAD
 
     //SOCKET IO functionality to be added here
     // these below 2 runs .after completion of the first one,so we can optimize by using promise were both can run parallely
@@ -43,6 +60,20 @@ export const sendMessage = async (req, res) => {
     await Promise.all([conversation.save(), newmessage.save()]);
 
     res.status(201).json({conversation, newmessage});
+=======
+    
+        
+    //SOCKET IO functionality to be added here
+    
+    // these below 2 runs .after completion of the first one,so we can optimize by using promise were both can run parallely
+    // await conversation.save();
+    await newmessage.save();
+    
+    // await Promise.all([conversation.save(), newmessage.save()]);
+    
+    // res.json({ newmessage});
+    res.status(201).json({newmessage});
+>>>>>>> b21ce7255c8d272c6af2b6f1d899a97ec9dec0c1
   } catch (error) {
     console.log("Error in sendMessage controller", error.message);
     res.status(500).json({ error: "Internal server error" });
