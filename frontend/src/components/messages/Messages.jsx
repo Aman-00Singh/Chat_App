@@ -6,16 +6,19 @@ const Messages = () => {
     const { messages, loading } = useGetMessages()
     console.log("Chit Chats:", messages)
 
-    if(messages === null){
+    if (messages === null) {
         return <p className='flex justify-center items-center min-h-[400px]'>No chats with user yet.</p>
     }
-    const userMessages = messages.map((msg) => {
+    const userMessages = messages.map((message) => {
         return (
-            <Message key={msg._id} message={msg.message} />
+            <Message key={message._id} message={message} />
         )
     })
 
     return (
+
+
+
         <div className='px-4 flex-1 overflow-auto'>
             {loading ? <p>Loading...</p> : userMessages}
         </div>
