@@ -60,12 +60,12 @@ export const getMessages = async (req, res) => {
     }).populate("messages"); //Not a refernce to msg but the actual msg
     
     if (!conversation) {
-      return res.status(400).json();
+      return res.status(400).json(null);
     }
-    res.json({ userToChatid, senderId, conversation});
+    res.json({ userToChatid, senderId, conversation });
     // const messages = conversation.messages;
 
-    // res.status(200).json({ messages });
+    // res.status(200).json(messages);
   } catch (error) {
     console.log("Error in getMessages controller", error.message);
     res.status(500).json({ error: "Internal server error" });
