@@ -24,7 +24,7 @@ const useGetMessages = () => {
         // const data = await response.json();
         // setMessages(data);
       } catch (error) {
-        toast.error("No chats with user yet.");
+        // toast.error("No chats with user yet.");
         setMessages(null);
       } finally {
         setloading(false);

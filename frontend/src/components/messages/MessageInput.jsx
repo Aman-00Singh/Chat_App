@@ -22,7 +22,7 @@ const MessageInput = () => {
         <form className='px-4 my-3'
             onSubmit={handleInputs}>
             <div className='w-full relative'>
-                <input type="text" className='border text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-900 text-black' placeholder='Send a message'
+                <input type="text" className='border text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-900 text-white' placeholder='Send a message'
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
 

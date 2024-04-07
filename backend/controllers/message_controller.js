@@ -60,7 +60,7 @@ export const getMessages = async (req, res) => {
     }).populate("messages"); //Not a refernce to msg but the actual msg
     
     if (!conversation) {
-      return res.status(400).json(null);
+      return res.json(null);
     }
     res.json({ userToChatid, senderId, conversation });
     // const messages = conversation.messages;
