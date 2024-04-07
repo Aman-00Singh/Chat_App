@@ -1,17 +1,23 @@
 import React from 'react'
 import Message from './Message'
 import useGetMessages from '../../hooks/useGetMessages'
+import { useAuthContext } from '../../context/AuthContext'
 
 const Messages = () => {
+
+    const {authUser} = useAuthContext()
     const { messages, loading } = useGetMessages()
-    console.log("Chit Chats:", messages)
+    // console.log("Chit Chats:", messages)
+    // console.log(authUser);
 
     if (messages === null) {
         return <p className='flex justify-center items-center min-h-[400px]'>No chats with user yet.</p>
     }
+
+
     const userMessages = messages.map((message) => {
         return (
-            <Message key={message._id} message={message} />
+            <Message key={message._id} message={message} sender={message.senderId}/>
         )
     })
 

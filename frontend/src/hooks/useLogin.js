@@ -28,7 +28,7 @@ const useLogin = () => {
             toast.success("Logged in");
             localStorage.setItem("chat-user-info", JSON.stringify(data));
             //context
-            setAuthUser(data);
+            setAuthUser(response.data);
           } else {
             throw new Error(response.statusText);
           }
