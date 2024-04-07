@@ -6,6 +6,7 @@ import axios from "axios";
 const useGetMessages = () => {
   const [loading, setloading] = useState(false);
   const { messages, setMessages, selectedConversation } = useConversation();
+
   useEffect(() => {
     const getMessages = async () => {
       setloading(true);
@@ -23,7 +24,8 @@ const useGetMessages = () => {
         // const data = await response.json();
         // setMessages(data);
       } catch (error) {
-        toast.error(error.message);
+        toast.error("No chats with user yet.");
+        setMessages(null);
       } finally {
         setloading(false);
       }

@@ -14,7 +14,9 @@ const useSendMessage = () => {
         {
           message,
         },
+
         { withCredentials: true }
+       
       );
 
       const data = res.data;
@@ -27,7 +29,8 @@ const useSendMessage = () => {
       toast.success("Message sent");
       console.log(data);
     } catch (error) {
-      toast.error(error.message);
+      toast.error("some error");
+
     } finally {
       setloading(false);
     }
