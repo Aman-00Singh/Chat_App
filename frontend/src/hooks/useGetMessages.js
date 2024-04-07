@@ -18,7 +18,8 @@ const useGetMessages = () => {
 
 
       } catch (error) {
-        toast.error("Failed to get messages, You have't selected any conversation yet.");
+        toast.error("No chats with user yet.");
+        setMessages(null);
       } finally {
         setloading(false);
       }
